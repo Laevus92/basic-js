@@ -17,9 +17,16 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-function dateSample(/* sampleActivity */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function dateSample(carbonRate) {
+ if (typeof carbonRate === 'string' && !isNaN(+carbonRate) && +carbonRate !== 0 && +carbonRate < 15 && +carbonRate >= 0) {
+  carbonRate = +carbonRate;
+  let decayCarbonRate = 15;
+  let k = 0.693 / 5730
+  let t = (Math.log(decayCarbonRate / carbonRate)) / k
+  return Math.ceil(t)
+ } else {
+  return false
+ }
 }
 
 module.exports = {
